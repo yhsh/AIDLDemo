@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.app_server">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AIDLDemo">
+        <activity android:name=".ServerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".AIDLTokenService"
+            android:exported="true">
+            <intent-filter>
+                <!--下面的action配置需要与客户端绑定服务的action保持一致-->
+                <action android:name="com.xiayiye5.login.token" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name=".TakeTokenBroadCast">
+            <intent-filter>
+                <!--下面的action配置需要与客户端发送广播的action保持一致-->
+                <action android:name="com.xiayiye5.login.token2" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
